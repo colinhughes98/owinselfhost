@@ -21,11 +21,12 @@ namespace OwinSelfHost.Middleware
         }
 
         public async Task Invoke(IDictionary<string, object> environment)
-        {           
+        {
+            var context = new OwinContext(environment);
+
             Debug.WriteLine("MiddleWare started");
             await _next(environment);
             Debug.WriteLine("Middleware completed....");
         }
-       
     }
 }
