@@ -18,16 +18,17 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             string baseAddress = "http://localhost:9000/";
 
             HttpClient client = new HttpClient();
 
-            var response = client.GetAsync(baseAddress + "api/values").Result;
+            var response = await client.GetAsync(baseAddress + "api/values");
 
            // Console.WriteLine(response);
-            MessageBox.Show(response.Content.ReadAsStringAsync().Result);
+            var data = await response.Content.ReadAsStringAsync();
+            MessageBox.Show(data);
         }
     }
 }

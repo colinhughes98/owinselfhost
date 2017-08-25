@@ -19,14 +19,21 @@ namespace OwinSelfHost
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new {id = RouteParameter.Optional}
             );
 
-            app.Use<ColMiddleWare>();
+          
 
             app.UseWebApi(config);
+            app.UseCol();
+        }
+    }
 
-           
+    public static class Extensions
+    {
+        public static IAppBuilder UseCol(this IAppBuilder app)
+        {
+          return app.Use<ColMiddleWare>();
         }
     }
 }

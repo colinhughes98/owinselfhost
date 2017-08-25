@@ -23,10 +23,8 @@ namespace OwinSelfHost.Middleware
         public async Task Invoke(IDictionary<string, object> environment)
         {
             var context = new OwinContext(environment);
-
-            Debug.WriteLine("MiddleWare started");
-            await _next(environment);
-            Debug.WriteLine("Middleware completed....");
+            await _next(environment);            
+            context.Response.OnSendingHeaders(o => context.Response.Headers.Add("x-col-header", new []{"test"}),null);
         }
     }
 }

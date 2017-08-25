@@ -18,7 +18,7 @@ namespace OwinSelfHost
             using (WebApp.Start<Startup>(baseAddress))
             {
                 Console.WriteLine("Service started....");
-                Console.ReadLine();
+                Console.ReadKey();
             }
         }
     }
